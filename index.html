@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .countdown {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .timer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .timer p {
+            font-size: 1.8rem;
+            padding: 0px 4px;
+        }
+        
+        #faded {
+            color: grey;
+            font-weight: 200;
+        }
+
+        .unlock {
+            padding-top: 50px;
+        }
+
+        .custom-button {
+            background-color: aqua;
+            width: 20%;
+            font-size: 1.2rem;           
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <h1>Countdown till your birthday</h1>
+        <p id="faded">This page will unlock in:</p>
+        <div class="timer" id="faded">
+            <p><span id="days-left">00</span> Days |</p>
+            <p><span id="hours-left">00</span> Hours |</p>
+            <p><span id="minutes-left">00</span> Minutes |</p>
+            <p><span id="seconds-left">00</span> Seconds</p>
+        </div>
+        <div class="unlock">
+            <button class="custom-button" onclick="window.open('https://ezstat.ru/2dQWV3')">Unlock now</button>
+        </div>
+    </div>
+
+    <script>
+        const countdown = new Date("2023-08-27 00:00:00");
+
+        let days = document.getElementById("days-left");
+        let hours = document.getElementById("hours-left");
+        let minutes = document.getElementById("minutes-left");
+        let seconds = document.getElementById("seconds-left");
+
+        function countdownUpd() {
+            const currentTime = new Date();
+            const countdownLeft = countdown - currentTime;
+
+            const daysCurrent = Math.floor(countdownLeft / (1000 * 60 * 60 * 24));
+            const hoursCurrent = Math.floor((countdownLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutesCurrent = Math.floor((countdownLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsCurrent = Math.floor((countdownLeft % (1000 * 60)) / 1000);
+
+            days.textContent = daysCurrent;
+            hours.textContent = hoursCurrent;
+            minutes.textContent = minutesCurrent;
+            seconds.textContent = secondsCurrent;
+        }
+        
+        setInterval(countdownUpd, 1000);
+    </script>
+</body>
+</html>
